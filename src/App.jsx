@@ -4,6 +4,8 @@ import { Container } from "react-bootstrap";
 
 function App() {
 
+  const MAX = 4;
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -12,12 +14,25 @@ function App() {
       try{
         const response = await fetch("https://rickandmortyapi.com/api/character");
         const result = await response.json();
-        setData(result.results);
-        console.log(result.results);
+
+        ///SORT DATA
+        const sortedResults = result.results.sort(() => {
+          return  Math.random() - 0.5;
+        })
+        const results = sortedResults.slice(0, MAX);  ///slice array
+
+        ///STORE DATA
+        setData(results);
+        console.log(results);
+
       } catch (error) {
+
         console.error("Error: ", error);
+      
       } finally {
+        
         setLoading(false);
+      
       }
     };
     
