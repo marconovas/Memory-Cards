@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 function App() {
 
-  const MAX = 4;
+  const MAX = 6;
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

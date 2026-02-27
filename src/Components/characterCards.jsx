@@ -14,31 +14,29 @@ export default function CharacterCards ({ data }) {
             setRow1(sortedRow1);
             setRow2(sortedRow2);
         }
-
         sortData();
     }, [data]);
     
 
     return(
         <Container>
-            <Row>
+            <Row className="mt-4">
                 {row1.map(character => (
-                    <Col key={character.id}>
-                        <Card style={{ width: '18rem' }}>
+                    <Col md={2} key={character.id}>
+                        <Card className="w-100">
                             <Card.Img variant="top" src={character.image}/>
                             <Card.Body>
                                 <Card.Title>{character.name}</Card.Title>
                                 <Card.Text>{character.status}</Card.Text>
                             </Card.Body>
-
                         </Card>
                     </Col>
                 ))}
             </Row>
-            <Row>
+            <Row className="mt-4">
                 {row2.map(character => (
-                    <Col key={character.id}>
-                        <Card style={{ width: '18rem' }}>
+                    <Col md={2} key={character.id}>
+                        <Card className="w-100">
                             <Card.Img variant="top" src={character.image}/>
                             <Card.Body>
                                 <Card.Title>{character.name}</Card.Title>
