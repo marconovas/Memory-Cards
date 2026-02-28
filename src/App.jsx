@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import CharacterCards from "./Components/characterCards";
 import { Container } from "react-bootstrap";
 
