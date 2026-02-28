@@ -9,24 +9,25 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try{
         const response = await fetch("https://rickandmortyapi.com/api/character");
         const result = await response.json();
-
+  
         ///SORT DATA
         const sortedResults = result.results.sort(() => {
           return  Math.random() - 0.5;
         })
         const results = sortedResults.slice(0, MAX);  ///slice array
-
+  
         ///STORE DATA
         setData(results);
         console.log(results);
-
+  
       } catch (error) {
-
+  
         console.error("Error: ", error);
       
       } finally {
@@ -35,7 +36,6 @@ function App() {
       
       }
     };
-    
     fetchData();
   }, []);
 
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <Container>
-      {data && <CharacterCards data={data}/>}
+      {data && <CharacterCards data={data} />}
     </Container>
   )
 }
