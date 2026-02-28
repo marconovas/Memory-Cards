@@ -6,6 +6,9 @@ export default function CharacterCards ({ data }) {
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
 
+    const [selectedRow1, setSelectedRow1] = useState(null);    
+    const [selectedRow2, setSelectedRow2] = useState(null);
+
     ///SORT ELEMENTS IN ROWS
     useEffect(() => { 
         const sortData = () => {
@@ -17,13 +20,22 @@ export default function CharacterCards ({ data }) {
         sortData();
     }, [data]);
     
+    const handleSelectedRow1 = (id) => {
+        setSelectedRow1(id);
+    }
+
+    const handleSelectedRow2 = (id) => {
+        setSelectedRow2(id);
+    }
 
     return(
         <Container>
-            <Row className="mt-4">
+            <Row className="mt-4" >
                 {row1.map(character => (
                     <Col md={2} key={character.id}>
-                        <Card className="w-100">
+                        <Card 
+                            className={`w-100 ${selectedRow1 === character.id ? "border border-primary" : ""}`} 
+                            onClick={() => handleSelectedRow1(character.id)}>
                             <Card.Img variant="top" src={character.image}/>
                             <Card.Body>
                                 <Card.Title>{character.name}</Card.Title>
@@ -33,16 +45,17 @@ export default function CharacterCards ({ data }) {
                     </Col>
                 ))}
             </Row>
+
             <Row className="mt-4">
                 {row2.map(character => (
                     <Col md={2} key={character.id}>
-                        <Card className="w-100">
+                        <Card className={`w-100 ${selectedRow2 === character.id? "border border-primary" : ""}`} 
+                            onClick={() => handleSelectedRow2(character.id)}>
                             <Card.Img variant="top" src={character.image}/>
                             <Card.Body>
                                 <Card.Title>{character.name}</Card.Title>
                                 <Card.Text>{character.status}</Card.Text>
                             </Card.Body>
-
                         </Card>
                     </Col>
                 ))}
