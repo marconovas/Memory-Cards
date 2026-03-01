@@ -21,11 +21,12 @@ export default function CharacterCards({ data }) {
         setSelectedRow2(null);
     }
     
+    //SHUFFLE ON SELECTION
     const handleSelectedRow1 = (id) => {
         setSelectedRow1(id);
 
         if(selectedRow2 !== null){
-            resetGame();
+            resetGame(); //SHUFFLE IF OTHER ROW IS SELECTED
         }
     }
 
