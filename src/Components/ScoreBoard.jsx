@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 
 
-export default function ScoreBoard ({ score, bestscore}) {
+export default function ScoreBoard ({ score, bestscore }) {
     return(
         <Container>
             <Row>

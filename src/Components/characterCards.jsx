@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
-export default function CharacterCards({ data }) {
+export default function CharacterCards({ data, onGetScore }) {
 
     ///SORT SHUFFLE FUNCTION
     const shuffle = (arr) => (
@@ -14,6 +14,11 @@ export default function CharacterCards({ data }) {
     const [selectedRow1, setSelectedRow1] = useState(null);
     const [selectedRow2, setSelectedRow2] = useState(null);
     
+    //SCORE TRACKER
+    const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(0);
+
+    
     const resetGame = () => { ///RESETS THE GAME
         setRow1(shuffle(data));
         setRow2(shuffle(data));
@@ -23,26 +28,47 @@ export default function CharacterCards({ data }) {
     
     //SHUFFLE ON SELECTION
     const handleSelectedRow1 = (id) => {
-        setSelectedRow1(id);
-
-        if(selectedRow2 !== null){
-            resetGame(); //SHUFFLE IF OTHER ROW IS SELECTED
+        if (selectedRow2 !== null) {
+            compareCards(id, selectedRow2);
+        } else {
+            setSelectedRow1(id);
         }
-    }
-
+    };
+    
     const handleSelectedRow2 = (id) => {
-        setSelectedRow2(id);
-
-        if(selectedRow1 !== null){
-            resetGame();
+        if (selectedRow1 !== null) {
+            compareCards(selectedRow1, id);
+        } else {
+            setSelectedRow2(id);
         }
-    }
+    };
+    
+    //COMPARE CARDS
+    const compareCards = (id1, id2) => {
+
+        let newScore = score;
+        let newHighScore = highScore;
+
+        if (id1 === id2) {
+            newScore = score + 1;
+            newHighScore = newScore > highScore ? newScore : highScore;
+
+            setScore(newScore);
+            setHighScore(newHighScore);
+        } else {
+            newScore = 0;
+            setScore(0);
+        }
+
+        onGetScore(newScore, newHighScore);
+        resetGame();
+    };
 
     return(
         <Container>
             <Row>
                 {row1.map(character => (
-                    <Col>
+                    <Col key={character.id}>
                         <Card onClick={() => handleSelectedRow1(character.id)}>
                             <Card.Img src={character.image}/>
                             <Card.Title>{character.name}</Card.Title>
@@ -53,7 +79,7 @@ export default function CharacterCards({ data }) {
             </Row>
             <Row>
                 {row2.map(character => (
-                    <Col>
+                    <Col key={character.id}>
                         <Card onClick={() => handleSelectedRow2(character.id)}>
                             <Card.Img src={character.image}/>
                             <Card.Title>{character.name}</Card.Title>

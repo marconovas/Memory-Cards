@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import CharacterCards from "./Components/characterCards";
 import { Container } from "react-bootstrap";
+import ScoreBoard from "./Components/ScoreBoard";
+import CharacterCards from "./Components/characterCards";
 
 function App() {
 
@@ -9,7 +10,17 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
+  //SCORE DATA  
+  const [scoreData, setScoreData] = useState(0);
+  const [highScoreData, setHighScoredata] = useState(0);
+
+  //GET SCORE FUNCTION
+  const GetScore = (score, highscore) => {
+    setScoreData(score);
+    setHighScoredata(highscore);
+  }
+
+  //GET DATA FROM API
   useEffect(() => {
     const fetchData = async () => {
       try{
@@ -43,7 +54,8 @@ function App() {
 
   return (
     <Container>
-      {data && <CharacterCards data={data} />}
+      <ScoreBoard score={scoreData} bestscore={highScoreData}/>
+      {data && <CharacterCards data={data} onGetScore={GetScore}/>}
     </Container>
   )
 }
