@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
 
 export default function CharacterCards({ data, onGetScore }) {
 
@@ -17,6 +17,7 @@ export default function CharacterCards({ data, onGetScore }) {
     //SCORE TRACKER
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [message, setMessage] = useState("");
 
     //SAVE PAIRS
     const [matchedIDs, setMatchedIds] = useState([]);
@@ -37,6 +38,7 @@ export default function CharacterCards({ data, onGetScore }) {
             setSelectedRow2(null);
 
             setMatchedIds([]);
+            setMessage("Ya habias elegido esa carta");
         }
 
         setRow1(shuffle(row1));
@@ -58,6 +60,7 @@ export default function CharacterCards({ data, onGetScore }) {
             setSelectedRow2(null);
 
             setMatchedIds([]);
+            setMessage("Ya habias elegido esa carta");
         }
 
         setRow1(shuffle(row1));
@@ -134,6 +137,17 @@ export default function CharacterCards({ data, onGetScore }) {
                     </Col>
                 ))}
             </Row>
+
+            {(message) && (
+                <Alert variant="warning">
+                    <div className="d-flex justify-content-between align-content-center">
+                        <p>
+                            {message}
+                        </p>
+                        <Button onClick={() => setMessage("")} variant="outline-warning">Cerrar</Button>
+                    </div>
+                </Alert>
+            )}
         </Container>
     )
 }

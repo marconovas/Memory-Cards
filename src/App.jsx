@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import ScoreBoard from "./Components/ScoreBoard";
 import CharacterCards from "./Components/characterCards";
 
 function App() {
 
-  const MAX = 6;
+  const MAX = 6; ///Cards per Row
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,6 +13,7 @@ function App() {
   //SCORE DATA  
   const [scoreData, setScoreData] = useState(0);
   const [highScoreData, setHighScoredata] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   //GET SCORE FUNCTION
   const GetScore = (score, highscore) => {
@@ -20,9 +21,15 @@ function App() {
     setHighScoredata(highscore);
   }
 
-  //GET DATA FROM API
+  // FINISH GAME
   useEffect(() => {
-    const fetchData = async () => {
+    if(highScoreData >= MAX)  //get to highscore -> finish game
+      setShowModal(true);
+  }, [highScoreData])
+
+  //GET DATA FROM API
+  const fetchData = async () => {
+      setLoading(true);
       try{
         const response = await fetch("https://rickandmortyapi.com/api/character");
         const result = await response.json();
@@ -47,6 +54,9 @@ function App() {
       
       }
     };
+
+  //CALL API (FIRST TIME)
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -55,7 +65,30 @@ function App() {
   return (
     <Container>
       <ScoreBoard score={scoreData} bestscore={highScoreData}/>
-      {data && <CharacterCards data={data} onGetScore={GetScore}/>}
+
+      {data && <CharacterCards
+        key={data?.[0]?.id}  //reset character cards
+        data={data}
+        onGetScore={GetScore}
+      />}
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Felicidades</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Terminaste el Juego!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() =>{ 
+              setShowModal(false);
+              setScoreData(0);
+              setHighScoredata(0);
+              fetchData();
+              }}
+            >Cerrar Ventana</Button>
+          </Modal.Footer>
+      </Modal>
     </Container>
   )
 }
