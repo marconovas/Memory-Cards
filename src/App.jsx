@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Container, Modal } from "react-bootstrap";
 import ScoreBoard from "./Components/ScoreBoard";
 import CharacterCards from "./Components/characterCards";
+import Header from "./Components/Header";
+import "./App.css";
 
 function App() {
 
@@ -63,33 +65,50 @@ function App() {
   if (loading) return <p>Cargando...</p>
 
   return (
-    <Container>
-      <ScoreBoard score={scoreData} bestscore={highScoreData}/>
+    <div className="app-wrapper">
 
-      {data && <CharacterCards
-        key={data?.[0]?.id}  //reset character cards
-        data={data}
-        onGetScore={GetScore}
-      />}
+      <Container fluid>
+        <div>
+          <Header />
+          <ScoreBoard score={scoreData} bestscore={highScoreData}/>
+        </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Felicidades</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Terminaste el Juego!
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() =>{ 
-              setShowModal(false);
-              setScoreData(0);
-              setHighScoredata(0);
-              fetchData();
-              }}
-            >Cerrar Ventana</Button>
-          </Modal.Footer>
-      </Modal>
-    </Container>
+
+        {data && <CharacterCards
+          key={data?.[0]?.id}  //reset character cards
+          data={data}
+          onGetScore={GetScore}
+        />}
+
+        <div className="d-flex justify-content-center align-content-center w-100">
+          <Button onClick={() => {
+            setScoreData(0);
+            setHighScoredata(0);
+            fetchData();
+          }} variant="success">
+            Reset Game
+          </Button>
+        </div>
+
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>🎉 All dimensions aligned!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Final score: {scoreData}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() =>{ 
+                setShowModal(false);
+                setScoreData(0);
+                setHighScoredata(0);
+                fetchData();
+                }}
+              >Play Again</Button>
+            </Modal.Footer>
+        </Modal>
+      </Container>
+    </div>
   )
 }
 

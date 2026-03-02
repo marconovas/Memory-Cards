@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
+import "./CharacterCards.css";
 
 export default function CharacterCards({ data, onGetScore }) {
 
@@ -110,29 +111,45 @@ export default function CharacterCards({ data, onGetScore }) {
 
     return(
         <Container>
-            <Row>
+            <Row className="justify-content-center">
                 {row1.map(character => (
-                    <Col key={character.id}>
-                        <Card onClick={() =>
-                            handleSelectedRow1(character.id)}
-                        >
-                            <Card.Img src={character.image}/>
-                            <Card.Title>{character.name}</Card.Title>
-                            <Card.Body>{character.status}</Card.Body>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2} className="mb-4" key={character.id}>
+                        <Card
+                            className={`memory-card ${matchedIDs.includes(character.id) ? "matched" : ""}`}
+                        onClick={() =>
+                            handleSelectedRow1(character.id)
+                        }>
+                            <Card.Img variant="top" src={character.image} />
+                            <Card.Body className=" small text-center">
+                                <Card.Title className="fs-6 fw-bold">
+                                    {character.name}
+                                </Card.Title>
+                                <Card.Text className="small">
+                                    {character.status}
+                                </Card.Text>
+                            </Card.Body>
                         </Card>
                     </Col>
                 ))}
             </Row>
-            <Row>
+            <Row className="justify-content-center">
                 {row2.map(character => (
-                    <Col key={character.id}>
-                        <Card onClick={() => 
-                            
-                            handleSelectedRow2(character.id)}
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2} className="mb-4" key={character.id}>
+                        <Card
+                            className={`memory-card ${matchedIDs.includes(character.id) ? "matched" : ""}`}
+                            onClick={() =>{
+                                handleSelectedRow2(character.id)}
+                            }
                         >
-                            <Card.Img src={character.image}/>
-                            <Card.Title>{character.name}</Card.Title>
-                            <Card.Body>{character.status}</Card.Body>
+                            <Card.Img variant="top" src={character.image} />
+                            <Card.Body className=" small text-center">
+                                <Card.Title className="fs-6 fw-bold">
+                                    {character.name}
+                                </Card.Title>
+                                <Card.Text className=" small">
+                                    {character.status}
+                                </Card.Text>
+                            </Card.Body>
                         </Card>
                     </Col>
                 ))}

@@ -1,0 +1,9 @@
+html {
+  background: radial-gradient(circle at top, #1b273f, #020617);
+  background-attachment: fixed;
+}
+
+body {
+  background: transparent !important;
+  margin: 0;
+}
