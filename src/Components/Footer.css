@@ -1,0 +1,38 @@
+.footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.footer-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  color: #00ffff;
+  margin-bottom: 0.5rem;
+}
+
+.footer-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #00ff88);
+  margin: 0.8rem auto;
+}
+
+.footer-text {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-copy {
+  opacity: 0.4;
+  font-size: 0.8rem;
+}

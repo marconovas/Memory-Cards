@@ -4,6 +4,7 @@ import ScoreBoard from "./Components/ScoreBoard";
 import CharacterCards from "./Components/characterCards";
 import Header from "./Components/Header";
 import "./App.css";
+import Footer from "./Components/Footer";
 
 function App() {
 
@@ -80,7 +81,7 @@ function App() {
           onGetScore={GetScore}
         />}
 
-        <div className="d-flex justify-content-center align-content-center w-100">
+        <div className="d-flex m-2 justify-content-center align-content-center w-100">
           <Button onClick={() => {
             setScoreData(0);
             setHighScoredata(0);
@@ -107,6 +108,8 @@ function App() {
               >Play Again</Button>
             </Modal.Footer>
         </Modal>
+
+        <Footer/>
       </Container>
     </div>
   )

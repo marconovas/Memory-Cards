@@ -1,0 +1,23 @@
+.score-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.score-label {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ffff;
+}
