@@ -21,10 +21,10 @@ Juego de memoria con Tarjetas (Cards) desarrollada con React
 
 ## ⚙ Instalación
 
-#git clone https://github.com/marconovas/Memory-Cards/tree/main
-#cd proyecto
-#npm install
-#npm run dev
+git clone https://github.com/marconovas/Memory-Cards/tree/main  
+cd proyecto  
+npm install  
+npm run dev
 
 ## 📚 Aprendizajes
 
