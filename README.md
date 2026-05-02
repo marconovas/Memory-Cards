@@ -1,35 +1,35 @@
 # Memory Cards
 
-Juego de memoria con Tarjetas (Cards) desarrollada con React
+Memory game with Cards developed with React
 
 ## 🚀 Demo
 
 🔗 memory-cards-chi-one.vercel.app
 
-## 🛠 Tecnologías
+# # 🛠 Technologies
 
 - React
 - Vite
 - JavaScript
 - CSS / Bootstrap
 
-## 📌 Funcionalidades
+# # 📌 Functionalities
 
-- fetch a API externa
-- Comparar elementos
-- Sistema de puntuación
+- fetch to external API
+- Compare items
+- Scoring system
 
-## ⚙ Instalación
+## ⚙ Installation
 
 git clone https://github.com/marconovas/Memory-Cards/tree/main  
-cd proyecto  
+cd project  
 npm install  
 npm run dev
 
-## 📚 Aprendizajes
+## 📚 Learning
 
-- Manejo de estado con useState
-- Organización de componentes
-- Obtener datos de una API externa
-- manipulacion de estados con useState()/useEffect()
-- Deploy en Vercel
+- State management with useState
+- Organization of components
+- Get data from an external API
+- manipulation of states with useState()/useEffect()
+- Deploy in Vercel
